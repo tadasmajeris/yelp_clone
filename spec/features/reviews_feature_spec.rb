@@ -11,6 +11,8 @@ feature 'reviewing' do
     click_button 'Leave Review'
 
     expect(current_path).to eq '/restaurants'
+
+    click_link 'Greggs'    
     expect(page).to have_content 'I <3 the Greggsnut'
   end
 end
