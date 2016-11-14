@@ -9,8 +9,12 @@ class RestaurantsController < ApplicationController
 
   def create
     Restaurant.create(restaurant_params)
-    # @restaurant = Restaurant.create(restaurant_params)    # Don' think this is needed!
+    # @restaurant = Restaurant.create(restaurant_params)    # Don't think this is needed!
     redirect_to '/restaurants'
+  end
+
+  def show
+    @restaurant = Restaurant.find(params[:id])
   end
 
   private
