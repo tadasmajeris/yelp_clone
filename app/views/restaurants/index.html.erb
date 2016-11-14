@@ -1,2 +1,10 @@
-Restaurant listings: There are currently no listings available
+<% unless @restaurants.empty? %>
+  <% @restaurants.each do |restaurant|%>
+  <%= restaurant.name %>
+  <% end %>
+<% else  %>
+  Restaurant listings: There are currently no listings available
+<% end %>
+
+
 <a href='#'>Add a restaurant</a>
