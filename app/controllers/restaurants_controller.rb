@@ -10,7 +10,11 @@ class RestaurantsController < ApplicationController
   def create
     # Restaurant.create(restaurant_params)
     @restaurant = Restaurant.create(restaurant_params)    # Don't think this is needed!
-    redirect_to '/restaurants'
+    if @restaurant.save
+      redirect_to restaurants_path
+    else
+      render "new"
+    end
   end
 
   def show
