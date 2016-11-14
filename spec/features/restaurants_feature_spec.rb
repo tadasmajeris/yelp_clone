@@ -25,9 +25,9 @@ context 'creating restaurants' do
   scenario 'prompts a user to fill out a form, then displays the new restaurant' do
     visit '/restaurants'
     click_link 'Add a restaurant'
-    fill_in 'name', with: 'Pizza Hut'
-    fill_in 'rating', with: '4'
-    click_button 'Submit'
+    fill_in 'Name', with: 'Pizza Hut'
+    fill_in 'Rating', with: '4'
+    click_button 'Create Restaurant'
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content 'Pizza Hut, Rating: 4'
   end
