@@ -1,0 +1,11 @@
+                                     Table "public.restaurants"
+   Column   |            Type             |                        Modifiers                         
+------------+-----------------------------+----------------------------------------------------------
+ id         | integer                     | not null default nextval('restaurants_id_seq'::regclass)
+ name       | character varying           | 
+ rating     | integer                     | 
+ created_at | timestamp without time zone | not null
+ updated_at | timestamp without time zone | not null
+Indexes:
+    "restaurants_pkey" PRIMARY KEY, btree (id)
+
