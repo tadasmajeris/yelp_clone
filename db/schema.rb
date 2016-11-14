@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-#g -DO NOT MANUALLY EDIT!!! To change the schema in any way, write another migration that does that.
-
-ActiveRecord::Schema.define(version: 20161114130422) do
+ActiveRecord::Schema.define(version: 20161114180448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,8 +18,9 @@ ActiveRecord::Schema.define(version: 20161114130422) do
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.integer  "rating"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
   end
 
 end
