@@ -13,3 +13,43 @@
  *= require_tree .
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+html, body, a, form, input, p, textarea {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 95%;
+}
+
+.field_with_errors {
+  color: #e44;
+}
+.field_with_errors input {
+  border: 1px solid #e44;
+}
+form input, textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+form select {
+  margin: 0 0 10px 5px;
+}
+textarea {
+  resize: none;
+  border: 1px solid #ddd;
+  height: 68px;
+  padding: 2px;
+  font-size: 0.9em;
+}
+form {
+  width: 200px;
+}
+input[type=submit] {
+  width: auto;
+}
+a {
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: none;
+}
