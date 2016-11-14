@@ -1,0 +1,15 @@
+<% if @restaurants.any? %>
+
+  <% @restaurants.each do |restaurant| %>
+
+    <h2><%= restaurant.name %></h2>
+
+  <% end %>
+
+<% else %>
+
+  <p>"No restaurants yet"</p>
+
+<% end %>
+
+<a href="#">Add a restaurant</a>
