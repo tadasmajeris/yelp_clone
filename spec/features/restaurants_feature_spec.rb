@@ -29,7 +29,7 @@ feature 'restaurants' do
       fill_in 'Rating', with: '4'
       click_button 'Create Restaurant'
       expect(current_path).to eq '/restaurants'
-      expect(page).to have_content 'Pizza Hut, Rating: 4'
+      expect(page).to have_content 'Pizza Hut Rating: 4'
     end
   end
 
@@ -42,6 +42,19 @@ feature 'restaurants' do
       expect(current_path).to eq "/restaurants/#{dixy_chicken.id}"
       expect(page).to have_content 'Dixy Chicken'
       expect(page).to have_content '2'
+    end
+  end
+
+  context 'editing restaurants' do
+    scenario 'let a user edit a restaurant' do
+      visit '/restaurants'
+      click_link 'Edit Dixy Chicken'
+      fill_in 'Name', with: 'Chicken Cottage'
+      fill_in 'Rating', with: 5
+      click_button 'Update restaurant'
+      expect(current_path).to eq '/restaurants'
+      expect(page).to have_content 'Chicken Cottage'
+      expect(page).to have_content '5'
     end
   end
 

@@ -2,8 +2,9 @@
   <ul>
   <% @restaurants.each do |restaurant|%>
     <li>
-      <%= restaurant.name + ", "%>
-      Rating: <%= restaurant.rating %>
+
+      <%= link_to(restaurant.name, restaurant_path(restaurant))%>
+      Rating: <%= restaurant.rating %> </a>
     </li>
   <% end %>
 </ul>
