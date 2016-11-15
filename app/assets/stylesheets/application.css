@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+input, textarea {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.field_with_errors {
+  color: #e33;
+}
+.field_with_errors input {
+  border: 1px solid #e33;
+}
+textarea {
+  resize: none;
+}
