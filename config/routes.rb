@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  root 'restaurants#index'
+
   resources :restaurants do
     resources :reviews
   end
 
-  # get '/restaurants' => 'restaurants#index'
   # get '/restaurants/new' => 'restaurants#new'
-  # post '/restaurants' => 'restaurants#create'
+  # post '/restaurants', to: 'restaurants#create'
   # get '/restaurants/:id' => 'restaurants#show', as: :restaurant
   # get 'restaurants/:id/edit' => 'restaurants#edit', as: :edit_destination
 
