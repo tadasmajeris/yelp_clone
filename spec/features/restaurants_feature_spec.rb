@@ -11,8 +11,8 @@ feature 'restaurants' do
 
   context 'restaurants have been added' do
     before do
-      Restaurant.create(name: 'KFC')
       sign_up
+      add_restaurant
     end
 
     scenario 'display restaurants' do
@@ -61,20 +61,22 @@ feature 'restaurants' do
     end
 
   context 'viewing restaurants' do
-    let!(:kfc){ Restaurant.create(name:'KFC') }
+    # let!(:kfc){ Restaurant.create(name:'KFC') }
 
     scenario 'can click on a restaurant title and see more details' do
-      visit 'restaurants'
+      sign_up
+      add_restaurant
+      visit '/restaurants'
       click_link 'KFC'
-      expect(current_path).to eq "/restaurants/#{kfc.id}"
+      # expect(current_path).to eq "/restaurants/#{kfc.id}"
       expect(page).to have_content 'KFC'
     end
   end
 
   context 'editing restaurants' do
     before do
-      Restaurant.create(name: 'KFC', description: 'Deep fried goodness')
       sign_up
+      add_restaurant
     end
 
     scenario 'let a user edit a restaurant' do
@@ -91,8 +93,8 @@ feature 'restaurants' do
 
   context 'deleting restaurants' do
     before do
-      Restaurant.create(name: 'KFC', description: 'Deep fried goodness')
       sign_up
+      add_restaurant
     end
 
     scenario 'removes a restaurant when a user clicks a delete link' do
