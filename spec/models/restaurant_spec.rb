@@ -13,4 +13,24 @@ describe Restaurant, type: :model do
     expect(restaurant).not_to be_valid
     # expect(restaurant).to have(1).error_on(:name)
   end
+
+
+  describe 'reviews' do
+    describe 'build_with_user' do
+
+      let(:user) {User.create email: "test@test.com" }
+      let(:restaurant) {Restaurant.create name: 'Le Bistro' }
+      let(:review_params) { {rating: 5, thoughts: 'top'} }
+
+      subject(:review) { restaurant.reviews.build_with_user(review_params, user) }
+
+      it 'build a reivew' do
+        expect(review).to be_a Review
+      end
+
+      it 'builds a review associared with the specified user' do
+        expect(review.user).to eq user
+      end
+    end
+  end
 end
