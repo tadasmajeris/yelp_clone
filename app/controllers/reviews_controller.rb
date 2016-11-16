@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+before_action :authenticate_user!
+
   def new
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
@@ -7,7 +9,7 @@ class ReviewsController < ApplicationController
   def create
     @restaurant = Restaurant.find(params[:restaurant_id])
     @restaurant.reviews.create(review_params)
-    redirect_to "/restaurants"     
+    redirect_to "/restaurants"
   end
 
   private

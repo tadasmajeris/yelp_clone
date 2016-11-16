@@ -36,5 +36,36 @@ feature "Users can sign in and out" do
 
   end
 
+end
+
+feature "user not signed in" do
+  before do
+    @restaurant = Restaurant.create(name: "Cafe del Mar", description: "On the beach al fresco")
+  end
+  scenario "cannot edit restaurant" do
+    visit "/restaurants/#{@restaurant.id}/edit"
+    expect(page).not_to have_css("form.edit_restaurant")
+    expect(page).to have_css("form.new_user")
+    page.driver.submit :patch, "/restaurants/#{@restaurant.id}", {"restaurant"=>{"name"=>"xyz", "description"=>"123"}}
+    expect(Restaurant.first.name).not_to eq "xyz"
+  end
+
+  scenario "cannot delete restaurant" do
+    expect { page.driver.delete "/restaurants/#{@restaurant.id}" }.not_to change(Restaurant, :count)
+  end
+
+  scenario "cannot add a restaurant" do
+    visit "/restaurants/new"
+    expect {page.driver.submit :post, restaurants_path, {"restaurant"=>{"name"=>"xyz", "description"=>"123"}}
+     }.not_to change(Restaurant, :count)
+    expect(page).not_to have_css("form.new_restaurant")
+    expect(page).to have_css("form.new_user")
+  end
+
+  scenario "cannot create reviews" do
+    visit "/restaurants/#{@restaurant.id}/reviews/new"
+    expect(page).not_to have_css("form.new_review")
+    expect(page).to have_css("form.new_user")
+  end
 
 end
