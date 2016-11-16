@@ -31,7 +31,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
-
+gem 'envyable'
+gem 'omniauth-facebook'
 
 group :test do
   gem 'rspec-rails'
