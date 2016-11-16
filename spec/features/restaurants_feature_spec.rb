@@ -30,6 +30,13 @@ feature 'restaurants' do
       expect(page).to have_content 'KFC'
       expect(current_path).to eq '/restaurants'
     end
+
+    scenario 'restaurants cannot be added if user is not signed in' do
+      visit '/'
+      click_link 'Add a restaurant'
+      expect(page).not_to have_content 'Name'
+      expect(page).to raise_error 'Please sign in before adding a restaurant'
+    end
   end
 
   context 'an invalid restaurant' do
@@ -42,7 +49,7 @@ feature 'restaurants' do
         expect(page).to have_content 'error'
       end
     end
-    
+
   context 'viewing restaurants' do
     let!(:kfc){ Restaurant.create(name:'KFC') }
 
