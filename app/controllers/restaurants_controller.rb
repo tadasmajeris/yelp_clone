@@ -10,9 +10,9 @@ before_action :authenticate_user!, :except => [:index, :show]
   end
 
   def create
-    # Restaurant.create(restaurant_params)
     @restaurant = Restaurant.create(restaurant_params)    # Don't think this is needed!
     if @restaurant.save
+      flash[:notice] = 'Restaurant added successfully'
       redirect_to restaurants_path
     else
       render "new"
