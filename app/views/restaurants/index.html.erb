@@ -5,7 +5,7 @@
     <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
     <h4><%= restaurant.description %></h4>
     <ul>
-      <% restaurant.reviews.each do |review |%>
+      <% restaurant.reviews.each do |review |%> 
         <li><%= review.thoughts %></li>
         <li><%= review.rating %></li>
       <% end %>
