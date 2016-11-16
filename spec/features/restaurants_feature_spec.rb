@@ -82,4 +82,25 @@ feature 'restaurants' do
     end
   end
 
+  context 'when signed in as different user' do
+    before do
+      sign_up_and_sign_in
+      create_restaurant
+      click_link 'Sign out'
+      sign_up_and_sign_in(email: 'glenny@google.com', password: 'glenny21')
+    end
+
+    scenario 'cannot see the links to edit/delete other users restaurant' do
+      expect(page).not_to have_link 'Edit KFC'
+      expect(page).not_to have_link 'Delete KFC'
+    end
+
+    scenario 'cannot edit/delete other users restaurant' do
+      page.driver.submit :patch, "/restaurants/#{Restaurant.first.id}", {"restaurant"=>{"name"=>"xyz", "description"=>"123"}}
+      expect(Restaurant.first.name).not_to eq 'xyz'
+      expect { page.driver.delete "/restaurants/#{Restaurant.first.id}"
+              }.not_to change(Restaurant, :count)
+    end
+  end
+
 end

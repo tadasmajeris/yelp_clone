@@ -2,7 +2,7 @@ class RestaurantsController < ApplicationController
 before_action :authenticate_user!, :except => [:index, :show]
 
   def index
-      @restaurants = Restaurant.all
+    @restaurants = Restaurant.all
   end
 
   def new
@@ -10,7 +10,8 @@ before_action :authenticate_user!, :except => [:index, :show]
   end
 
   def create
-    @restaurant = Restaurant.create(restaurant_params)    # Don't think this is needed!
+    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant.user_id = current_user.id
     if @restaurant.save
       flash[:notice] = 'Restaurant added successfully'
       redirect_to restaurants_path
@@ -29,14 +30,16 @@ before_action :authenticate_user!, :except => [:index, :show]
 
   def update
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.update(restaurant_params)
+    @restaurant.update(restaurant_params) if @restaurant.belongs_to?(current_user)
     redirect_to "/restaurants"
   end
 
   def destroy
     @restaurant = Restaurant.find(params[:id])
-    @restaurant.destroy
-    flash[:notice]= "Restaurant successfully deleted"
+    if @restaurant.belongs_to?(current_user)
+      @restaurant.destroy
+      flash[:notice]= "Restaurant successfully deleted"
+    end
     redirect_to '/restaurants'
   end
 

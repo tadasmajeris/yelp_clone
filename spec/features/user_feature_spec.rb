@@ -40,7 +40,8 @@ end
 
 feature "user not signed in" do
   before do
-    @restaurant = Restaurant.create(name: "Cafe del Mar", description: "On the beach al fresco")
+    user = User.create(email: 'joe@joe.com', password: 'joejoe', password_confirmation: 'joejoe')
+    @restaurant = Restaurant.create(name: "Cafe del Mar", description: "On the beach al fresco", user_id: user.id)
   end
   scenario "cannot edit restaurant" do
     visit "/restaurants/#{@restaurant.id}/edit"
