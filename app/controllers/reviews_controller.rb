@@ -8,15 +8,18 @@ before_action :authenticate_user!
 
   def create
     restaurant = Restaurant.find(params[:restaurant_id])
-    if current_user.has_reviewed? restaurant
-      flash[:notice] = "You've already reviewed this restaurant"
+    @review = restaurant.reviews.build(review_params)
+    @review.user = current_user
+
+    if @review.save
+      redirect_to "/restaurants"
     else
-      review = Review.new(review_params)
-      review.user_id = current_user.id
-      review.restaurant_id = restaurant.id
-      review.save
+      if @review.errors[:user]
+        redirect_to "/restaurants", alert: "You have already reviewed this restaurant"
+      else
+        render :new
+      end
     end
-    redirect_to "/restaurants"
   end
 
   private

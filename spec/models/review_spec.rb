@@ -5,4 +5,11 @@ describe Review, type: :model do
     review = Review.new(rating:6)
     expect(review).to have(1).error_on(:rating)
   end
+
+  # context "it should not allow multiple reviews from the same user" do
+  #   it
+  # end
+
+
+
 end
