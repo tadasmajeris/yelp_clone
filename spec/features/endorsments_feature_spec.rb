@@ -12,4 +12,12 @@ feature 'endorsing reviews' do
     click_link 'Endorse Review'
     expect(page).to have_content '1 endorsement'
   end
+
+  scenario 'reviews can be endorsed muliple times' do
+    visit '/restaurants'
+    click_link 'Endorse Review'
+    click_link 'Endorse Review'
+    expect(page).to have_content '2 endorsements'
+  end
+
 end
