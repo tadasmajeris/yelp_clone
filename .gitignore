@@ -16,3 +16,6 @@ config/env.yml
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Don't check in credentials 
+config/env.yml
