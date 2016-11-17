@@ -11,6 +11,6 @@ feature 'reviewing' do
     leave_review('great', 5)
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content('so so')
-    expect(page).to have_content('Average rating: 4.0')
+    expect(page).to have_content('Average rating: ★★★★☆')
   end
 end
