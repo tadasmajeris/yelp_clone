@@ -7,15 +7,16 @@ feature 'endorsing reviews' do
     restaurant.reviews.create_with_user({rating: 3}, user)
   end
 
-  scenario 'a user can endorse a review, which updates the count' do
+  scenario 'a user can endorse a review, which updates the count', js: true do
     visit '/restaurants'
     click_link 'Endorse Review'
     expect(page).to have_content '1 endorsement'
   end
 
-  scenario 'reviews can be endorsed muliple times' do
+  scenario 'reviews can be endorsed muliple times', js: true do
     visit '/restaurants'
     click_link 'Endorse Review'
+    visit '/restaurants'
     click_link 'Endorse Review'
     expect(page).to have_content '2 endorsements'
   end
