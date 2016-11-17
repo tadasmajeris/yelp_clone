@@ -61,7 +61,7 @@ feature 'restaurants' do
     end
 
   context 'viewing restaurants' do
-    # let!(:kfc){ Restaurant.create(name:'KFC') }
+    let!(:kfc){ Restaurant.create(name:'KFC') }
 
     scenario 'can click on a restaurant title and see more details' do
       sign_up

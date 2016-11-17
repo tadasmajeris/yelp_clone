@@ -3,9 +3,11 @@ class ReviewsController < ApplicationController
   def new
     @user = current_user
     @restaurant = Restaurant.find(params[:restaurant_id])
-    if current_user.has_reviewed? @restaurant
+    if current_user
+      if current_user.has_reviewed? @restaurant
       flash[:alert] = "You've already reviewed this restaurant"
       redirect_to '/restaurants'
+      end
     end
     @review = Review.new
   end

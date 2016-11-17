@@ -24,7 +24,7 @@ describe Restaurant, type: :model do
 
       subject(:review) { restaurant.reviews.build_with_user(review_params, user) }
 
-      it 'build a reivew' do
+      it 'builds a review' do
         expect(review).to be_a Review
       end
 
