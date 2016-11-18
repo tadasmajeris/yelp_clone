@@ -40,6 +40,7 @@ group :test do
   gem 'rspec-collection_matchers'
   gem 'shoulda'
   gem 'database_cleaner'
+  gem 'poltergeist'
 end
 
 group :development, :test do
