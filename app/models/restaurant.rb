@@ -6,4 +6,9 @@ class Restaurant < ApplicationRecord
   validates :name, length: { minimum: 3 }, uniqueness: true
   validates :user_id, length: { minimum: 1 }, allow_nil: true
 
+  def average_rating
+    return 'N/A' if reviews.none?
+    reviews.inject(0) {|memo, review| memo + review.rating} / reviews.count
+  end
+
 end

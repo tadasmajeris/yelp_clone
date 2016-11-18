@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     @review = @restaurant.reviews.new(reviews_params)
     @review.user = current_user
     if @review.save
-      redirect_to restaurant_path(params[:restaurant_id])
+      redirect_to restaurants_path
     else
       render 'new'
     end
