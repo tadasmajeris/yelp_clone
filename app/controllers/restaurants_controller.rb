@@ -6,10 +6,6 @@ before_action :authenticate_user!, :except => [:index, :show]
     @restaurants = Restaurant.all
   end
 
-  def restaurant_params
-    params.require(:restaurant).permit(:name, :description, :user_id)
-  end
-
   def new
     @restaurant = Restaurant.new
   end
@@ -44,5 +40,11 @@ before_action :authenticate_user!, :except => [:index, :show]
     @restaurant.destroy
     flash[:notice] = 'Restaurant deleted successfully'
     redirect_to '/restaurants'
+  end
+
+  private
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :description, :user_id, :image)
   end
 end

@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'envyable'
 gem 'omniauth-facebook'
+gem 'paperclip'
 
 group :test do
   gem 'rspec-rails'

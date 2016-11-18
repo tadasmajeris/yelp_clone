@@ -37,6 +37,15 @@ feature 'restaurants' do
       expect(current_path).to eq '/restaurants'
     end
 
+    scenario 'adding image to a restaurant' do
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'KFC'
+      page.attach_file('restaurant_image', Rails.root + 'public/rest.jpg')
+      click_button 'Create Restaurant'
+      expect(page).to have_css('img')
+    end
+
     scenario 'restaurants cannot be added if user is not signed in' do
       sign_out
       visit '/'
