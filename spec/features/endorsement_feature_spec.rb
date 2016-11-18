@@ -16,6 +16,7 @@ feature 'endorsing reviews' do
   scenario 'the page displays the correct number of endorsements', js: true do
     visit '/restaurants'
     click_link 'Endorse Review'
+    visit '/restaurants'
     click_link 'Endorse Review'
     expect(page).to have_content('2 endorsements')
   end
